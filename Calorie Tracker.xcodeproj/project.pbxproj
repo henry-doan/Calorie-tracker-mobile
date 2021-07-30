@@ -15,6 +15,8 @@
 		446E122F26B3C09200F79F42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 446E122D26B3C09200F79F42 /* LaunchScreen.storyboard */; };
 		446E123A26B3C09200F79F42 /* Calorie_TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446E123926B3C09200F79F42 /* Calorie_TrackerTests.swift */; };
 		446E124526B3C09200F79F42 /* Calorie_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446E124426B3C09200F79F42 /* Calorie_TrackerUITests.swift */; };
+		446E125326B48ED500F79F42 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446E125226B48ED500F79F42 /* EditViewController.swift */; };
+		446E125526B48EED00F79F42 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446E125426B48EED00F79F42 /* AddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		446E124026B3C09200F79F42 /* Calorie TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Calorie TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		446E124426B3C09200F79F42 /* Calorie_TrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calorie_TrackerUITests.swift; sourceTree = "<group>"; };
 		446E124626B3C09200F79F42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		446E125226B48ED500F79F42 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		446E125426B48EED00F79F42 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				446E122426B3C08F00F79F42 /* SceneDelegate.swift */,
 				446E122626B3C08F00F79F42 /* ViewController.swift */,
 				446E122826B3C08F00F79F42 /* Main.storyboard */,
+				446E125226B48ED500F79F42 /* EditViewController.swift */,
+				446E125426B48EED00F79F42 /* AddViewController.swift */,
 				446E122B26B3C09200F79F42 /* Assets.xcassets */,
 				446E122D26B3C09200F79F42 /* LaunchScreen.storyboard */,
 				446E123026B3C09200F79F42 /* Info.plist */,
@@ -258,6 +264,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				446E125526B48EED00F79F42 /* AddViewController.swift in Sources */,
+				446E125326B48ED500F79F42 /* EditViewController.swift in Sources */,
 				446E122726B3C08F00F79F42 /* ViewController.swift in Sources */,
 				446E122326B3C08F00F79F42 /* AppDelegate.swift in Sources */,
 				446E122526B3C08F00F79F42 /* SceneDelegate.swift in Sources */,
