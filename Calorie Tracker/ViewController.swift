@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddProtocol {
     
     // array to store calories items
     //var calsArr: [Calorie] = []
@@ -32,7 +32,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "addSegue") {
             let view = segue.destination as! AddViewController
-            //view.delegate = self
+            view.delegate = self
         }
                 
         if (segue.identifier == "editSegue") {
@@ -107,7 +107,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
-
+    
+    // fucntion to add the calorie item
+    func setAddedValues(addName: String, addCal: Int, addIntake: Bool) {
+        // add new item
+        let newItem = Calorie(name: addName, cals: addCal, intake: addIntake)
+        calsArr.append(newItem)
+        
+        // reload values
+        self.tableView.reloadData()
+    }
 
 }
 

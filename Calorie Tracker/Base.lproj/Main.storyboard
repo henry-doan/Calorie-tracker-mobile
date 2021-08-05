@@ -140,7 +140,7 @@
                                                     <constraint firstAttribute="width" constant="32" id="vG8-06-EzL"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -223,7 +223,7 @@
                                                     <constraint firstAttribute="width" constant="32" id="jUQ-BH-54b"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -253,6 +253,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eSu-eR-tf1"/>
+                    <connections>
+                        <outlet property="AddCallTxtBx" destination="Pke-m4-c6n" id="HJw-q0-TRE"/>
+                        <outlet property="addNameTxtBx" destination="2hv-Kg-v1q" id="5Jf-Ua-Qdh"/>
+                        <outlet property="intakeSwitch" destination="aO1-Fs-h34" id="H2E-5c-ztY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iu1-oY-hsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
