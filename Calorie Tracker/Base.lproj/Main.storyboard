@@ -53,8 +53,9 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="exR-FW-Odp"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfN-SI-lu3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfN-SI-lu3" userLabel="calTotalLbl">
                                 <rect key="frame" x="0.0" y="44" width="414" height="70"/>
+                                <accessibility key="accessibilityConfiguration" identifier="calTotalLbl" label="calTotalLbl"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="uVl-3D-1WL"/>
                                 </constraints>
@@ -83,6 +84,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="CalTotalLbl" destination="kfN-SI-lu3" id="Dx3-4F-jnU"/>
                         <outlet property="tableView" destination="LAx-bW-IOA" id="d0e-Dg-SvZ"/>
                     </connections>
                 </viewController>

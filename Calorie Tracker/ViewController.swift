@@ -10,12 +10,20 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // array to store calories items
-    var calsArr: [Calorie] = []
+    //var calsArr: [Calorie] = []
+    var calsArr = [
+        Calorie(name: "lunch", cals: 100, intake: true),
+        Calorie(name: "Snack", cals: 60, intake: true),
+        Calorie(name: "walk", cals: 40, intake: false),
+    ]
+    var totalCal = 0
     
     // index of the item being edited
     var calItemBeingEdited: Int!
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var CalTotalLbl: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Calorie Tracker";
@@ -71,7 +79,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let calTxt = ""
         currentItem.intake ? calTxt + "+" : calTxt + "-"
         cell.detailTextLabel!.text = "\(calTxt) \(currentItem.cals)"
-                
+        cell.detailTextLabel!.textColor = currentItem.intake ? UIColor.green : UIColor.red
+        
         // set accessory type
         cell.accessoryType = .disclosureIndicator
                 
