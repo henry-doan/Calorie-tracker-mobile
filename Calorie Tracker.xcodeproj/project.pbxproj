@@ -17,6 +17,7 @@
 		446E124526B3C09200F79F42 /* Calorie_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446E124426B3C09200F79F42 /* Calorie_TrackerUITests.swift */; };
 		446E125326B48ED500F79F42 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446E125226B48ED500F79F42 /* EditViewController.swift */; };
 		446E125526B48EED00F79F42 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446E125426B48EED00F79F42 /* AddViewController.swift */; };
+		44ED988426BB796900B62512 /* Calorie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ED988326BB796900B62512 /* Calorie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		446E124626B3C09200F79F42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		446E125226B48ED500F79F42 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		446E125426B48EED00F79F42 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		44ED988326BB796900B62512 /* Calorie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calorie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				446E122B26B3C09200F79F42 /* Assets.xcassets */,
 				446E122D26B3C09200F79F42 /* LaunchScreen.storyboard */,
 				446E123026B3C09200F79F42 /* Info.plist */,
+				44ED988326BB796900B62512 /* Calorie.swift */,
 			);
 			path = "Calorie Tracker";
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				446E125526B48EED00F79F42 /* AddViewController.swift in Sources */,
 				446E125326B48ED500F79F42 /* EditViewController.swift in Sources */,
 				446E122726B3C08F00F79F42 /* ViewController.swift in Sources */,
+				44ED988426BB796900B62512 /* Calorie.swift in Sources */,
 				446E122326B3C08F00F79F42 /* AppDelegate.swift in Sources */,
 				446E122526B3C08F00F79F42 /* SceneDelegate.swift in Sources */,
 			);

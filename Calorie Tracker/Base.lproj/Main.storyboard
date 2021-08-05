@@ -48,6 +48,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="YiL-oi-1LP"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="exR-FW-Odp"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfN-SI-lu3">
                                 <rect key="frame" x="0.0" y="44" width="414" height="70"/>
@@ -78,6 +82,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="LAx-bW-IOA" id="d0e-Dg-SvZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -91,77 +98,73 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1QJ-ix-niX" userLabel="EditItemLbl">
-                                <rect key="frame" x="87" y="244" width="88" height="21"/>
-                                <accessibility key="accessibilityConfiguration" identifier="EditItemLbl" label="EditItemLbl"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Czm-Oo-1ZE" userLabel="CalEditLabel">
-                                <rect key="frame" x="87" y="341" width="67" height="21"/>
-                                <accessibility key="accessibilityConfiguration" identifier="CalEditLabel" label="CalEditLabel"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tNs-jJ-KCQ" userLabel="EditNameTxtBx">
-                                <rect key="frame" x="87" y="273" width="97" height="34"/>
-                                <accessibility key="accessibilityConfiguration" identifier="EditNameTxtBx" label="EditNameTxtBx"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Wh-yW-cyo" userLabel="EditCalTxtBx">
-                                <rect key="frame" x="87" y="370" width="97" height="34"/>
-                                <accessibility key="accessibilityConfiguration" identifier="EditCalTxtBx" label="EditCalTxtBx"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="55a-Rz-7g2" userLabel="IntakeEditSwitch">
-                                <rect key="frame" x="87" y="457" width="51" height="31"/>
-                                <accessibility key="accessibilityConfiguration" identifier="IntakeEditSwitch" label="IntakeEditSwitch"/>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intake" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGv-Dy-V8t" userLabel="IntakeEditLbl">
-                                <rect key="frame" x="164" y="462" width="46" height="21"/>
-                                <accessibility key="accessibilityConfiguration" identifier="IntakeEditLbl" label="IntakeEditLbl"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMf-JV-TaG" userLabel="EditBtn">
-                                <rect key="frame" x="188" y="524" width="49" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="EditBtn" label="EditBtn"/>
-                                <state key="normal" title="Submit"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Form" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Jb-DK-QSi" userLabel="EditTitle">
-                                <rect key="frame" x="144" y="148" width="127" height="37"/>
-                                <accessibility key="accessibilityConfiguration" identifier="EditTitle" label="EditTitle"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XQb-MC-FrM">
+                                <rect key="frame" x="24" y="81.000000000000014" width="366" height="130.33333333333337"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOh-VN-orp" userLabel="EditTitle">
+                                        <rect key="frame" x="162.33333333333334" y="0.0" width="41.666666666666657" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="EditTitle" label="EditTitle"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wqL-dT-Pc9">
+                                        <rect key="frame" x="0.0" y="35" width="366" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1J-hB-3Qu" userLabel="EditItemLbl">
+                                                <rect key="frame" x="0.0" y="0.0" width="87.333333333333329" height="20.333333333333332"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="EditItemLbl" label="EditItemLbl"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ztk-CQ-btq" userLabel="EditNameTxtBx">
+                                                <rect key="frame" x="97.333333333333314" y="0.0" width="150" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="EditNameTxtBx" label="EditNameTxtBx"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVd-2Z-wLk" userLabel="CalEditLabel">
+                                                <rect key="frame" x="257.33333333333331" y="0.0" width="66.666666666666686" height="20.333333333333332"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="CalEditLabel" label="CalEditLabel"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uUS-Zg-4aW" userLabel="EditCalTxtBx">
+                                                <rect key="frame" x="334" y="0.0" width="32" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="EditCalTxtBx" label="EditCalTxtBx"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="vG8-06-EzL"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x8F-3o-xva" userLabel="IntakeEditSwitch">
+                                        <rect key="frame" x="158.66666666666666" y="74" width="51" height="31"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="IntakeEditSwitch" label="IntakeEditSwitch"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intake" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nzd-C4-lOT" userLabel="IntakeEditLbl">
+                                        <rect key="frame" x="160" y="110" width="46" height="20.333333333333343"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="IntakeEditLbl" label="IntakeEditLbl"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="wqL-dT-Pc9" firstAttribute="leading" secondItem="XQb-MC-FrM" secondAttribute="leading" id="5Kq-oP-me9"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b3I-7m-tzK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="tNs-jJ-KCQ" firstAttribute="top" secondItem="1QJ-ix-niX" secondAttribute="bottom" constant="8" id="1I1-mi-Yoa"/>
-                            <constraint firstItem="1QJ-ix-niX" firstAttribute="leading" secondItem="b3I-7m-tzK" secondAttribute="leading" constant="87" id="9Lc-xj-sPM"/>
-                            <constraint firstItem="Czm-Oo-1ZE" firstAttribute="top" secondItem="tNs-jJ-KCQ" secondAttribute="bottom" constant="34" id="BsZ-h2-t6O"/>
-                            <constraint firstItem="55a-Rz-7g2" firstAttribute="centerY" secondItem="IGv-Dy-V8t" secondAttribute="centerY" id="E0K-qf-PnE"/>
-                            <constraint firstItem="1QJ-ix-niX" firstAttribute="leading" secondItem="tNs-jJ-KCQ" secondAttribute="leading" id="Eoc-nk-yC9"/>
-                            <constraint firstItem="1Jb-DK-QSi" firstAttribute="top" secondItem="b3I-7m-tzK" secondAttribute="top" constant="104" id="G5Y-Qf-QtX"/>
-                            <constraint firstItem="IGv-Dy-V8t" firstAttribute="leading" secondItem="55a-Rz-7g2" secondAttribute="trailing" constant="28" id="Ihr-5J-U00"/>
-                            <constraint firstItem="tNs-jJ-KCQ" firstAttribute="trailing" secondItem="2Wh-yW-cyo" secondAttribute="trailing" id="K23-yc-Ja0"/>
-                            <constraint firstItem="tNs-jJ-KCQ" firstAttribute="leading" secondItem="Czm-Oo-1ZE" secondAttribute="leading" id="Kxh-oV-qcG"/>
-                            <constraint firstItem="Czm-Oo-1ZE" firstAttribute="leading" secondItem="2Wh-yW-cyo" secondAttribute="leading" id="Qhg-gT-G7G"/>
-                            <constraint firstItem="55a-Rz-7g2" firstAttribute="top" secondItem="2Wh-yW-cyo" secondAttribute="bottom" constant="53" id="ULJ-hh-YfP"/>
-                            <constraint firstItem="1QJ-ix-niX" firstAttribute="top" secondItem="1Jb-DK-QSi" secondAttribute="bottom" constant="59" id="Vcd-Jn-Xya"/>
-                            <constraint firstItem="2Wh-yW-cyo" firstAttribute="leading" secondItem="55a-Rz-7g2" secondAttribute="leading" id="gZQ-h8-ZsK"/>
-                            <constraint firstItem="aMf-JV-TaG" firstAttribute="top" secondItem="IGv-Dy-V8t" secondAttribute="bottom" constant="41" id="gmM-B2-nnI"/>
-                            <constraint firstItem="1Jb-DK-QSi" firstAttribute="centerX" secondItem="aMf-JV-TaG" secondAttribute="centerX" constant="-5" id="kEF-PK-vQJ"/>
-                            <constraint firstItem="2Wh-yW-cyo" firstAttribute="top" secondItem="Czm-Oo-1ZE" secondAttribute="bottom" constant="8" id="o3E-Ug-Ypm"/>
-                            <constraint firstItem="b3I-7m-tzK" firstAttribute="trailing" secondItem="tNs-jJ-KCQ" secondAttribute="trailing" constant="230" id="q9f-4I-8kC"/>
-                            <constraint firstItem="1Jb-DK-QSi" firstAttribute="leading" secondItem="b3I-7m-tzK" secondAttribute="leading" constant="144" id="vHm-1s-fEm"/>
+                            <constraint firstItem="XQb-MC-FrM" firstAttribute="centerX" secondItem="ZW4-l5-q8E" secondAttribute="centerX" id="RfT-3N-OEV"/>
+                            <constraint firstItem="XQb-MC-FrM" firstAttribute="top" secondItem="b3I-7m-tzK" secondAttribute="top" constant="37.000000000000014" id="YbL-a1-PF2"/>
+                            <constraint firstItem="XQb-MC-FrM" firstAttribute="leading" secondItem="b3I-7m-tzK" secondAttribute="leading" constant="24" id="g7R-Wq-lIW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bKq-L5-e2Q"/>
@@ -178,84 +181,80 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Form" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poP-g9-bpr" userLabel="AddTitle">
-                                <rect key="frame" x="142" y="108" width="130" height="37"/>
-                                <accessibility key="accessibilityConfiguration" identifier="AddTitle" label="AddTitle"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubb-E6-BQs" userLabel="AddItemLbl">
-                                <rect key="frame" x="80" y="204" width="88" height="21"/>
-                                <accessibility key="accessibilityConfiguration" identifier="AddItemLbl" label="AddItemLbl"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOg-h6-KEh" userLabel="CalAddLabel">
-                                <rect key="frame" x="80" y="301" width="67" height="21"/>
-                                <accessibility key="accessibilityConfiguration" identifier="CalAddLabel" label="CalAddLabel"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2hv-Kg-v1q" userLabel="AddNameTxtBx">
-                                <rect key="frame" x="80" y="233" width="97" height="34"/>
-                                <accessibility key="accessibilityConfiguration" identifier="AddNameTxtBx" label="AddNameTxtBx"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pke-m4-c6n" userLabel="AddCalTxtBx">
-                                <rect key="frame" x="80" y="330" width="97" height="34"/>
-                                <accessibility key="accessibilityConfiguration" identifier="AddCalTxtBx" label="AddCalTxtBx"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aO1-Fs-h34" userLabel="IntakeAddSwitch">
-                                <rect key="frame" x="80" y="417" width="51" height="31"/>
-                                <accessibility key="accessibilityConfiguration" identifier="IntakeAddSwitch" label="IntakeAddSwitch"/>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intake" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7g-Tm-zFL" userLabel="IntakeAddLbl">
-                                <rect key="frame" x="157" y="422" width="46" height="21"/>
-                                <accessibility key="accessibilityConfiguration" identifier="IntakeAddLbl" label="IntakeAddLbl"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0e-X1-alN" userLabel="AddBtn">
-                                <rect key="frame" x="181" y="484" width="49" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="AddBtn" label="AddBtn"/>
-                                <state key="normal" title="Submit"/>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xtY-Jh-6B8">
+                                <rect key="frame" x="24" y="65.000000000000014" width="366" height="130.33333333333337"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Form" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poP-g9-bpr" userLabel="AddTitle">
+                                        <rect key="frame" x="130.66666666666666" y="0.0" width="105" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="AddTitle" label="AddTitle"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6is-QN-Orc">
+                                        <rect key="frame" x="0.0" y="35" width="366" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubb-E6-BQs" userLabel="AddItemLbl">
+                                                <rect key="frame" x="0.0" y="0.0" width="87.333333333333329" height="20.333333333333332"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="AddItemLbl" label="AddItemLbl"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2hv-Kg-v1q" userLabel="AddNameTxtBx">
+                                                <rect key="frame" x="97.333333333333314" y="0.0" width="150" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="AddNameTxtBx" label="AddNameTxtBx"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOg-h6-KEh" userLabel="CalAddLabel">
+                                                <rect key="frame" x="257.33333333333331" y="0.0" width="66.666666666666686" height="20.333333333333332"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="CalAddLabel" label="CalAddLabel"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pke-m4-c6n" userLabel="AddCalTxtBx">
+                                                <rect key="frame" x="334" y="0.0" width="32" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="AddCalTxtBx" label="AddCalTxtBx"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="jUQ-BH-54b"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aO1-Fs-h34" userLabel="IntakeAddSwitch">
+                                        <rect key="frame" x="158.66666666666666" y="74" width="51" height="31"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="IntakeAddSwitch" label="IntakeAddSwitch"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intake" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7g-Tm-zFL" userLabel="IntakeAddLbl">
+                                        <rect key="frame" x="160" y="110" width="46" height="20.333333333333343"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="IntakeAddLbl" label="IntakeAddLbl"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="6is-QN-Orc" firstAttribute="leading" secondItem="xtY-Jh-6B8" secondAttribute="leading" id="9Od-FR-su3"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AB2-oI-YLO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="2hv-Kg-v1q" firstAttribute="top" secondItem="Ubb-E6-BQs" secondAttribute="bottom" constant="8" id="7ZO-Qh-fCF"/>
-                            <constraint firstItem="aO1-Fs-h34" firstAttribute="centerY" secondItem="e7g-Tm-zFL" secondAttribute="centerY" id="GhO-sy-4Li"/>
-                            <constraint firstItem="MOg-h6-KEh" firstAttribute="top" secondItem="2hv-Kg-v1q" secondAttribute="bottom" constant="34" id="JHd-F2-n04"/>
-                            <constraint firstItem="poP-g9-bpr" firstAttribute="top" secondItem="AB2-oI-YLO" secondAttribute="top" constant="64" id="JeQ-Vd-prV"/>
-                            <constraint firstItem="AB2-oI-YLO" firstAttribute="trailing" secondItem="2hv-Kg-v1q" secondAttribute="trailing" constant="237" id="MRJ-Sx-NT8"/>
-                            <constraint firstItem="h0e-X1-alN" firstAttribute="top" secondItem="e7g-Tm-zFL" secondAttribute="bottom" constant="41" id="Mhv-mG-qey"/>
-                            <constraint firstItem="e7g-Tm-zFL" firstAttribute="leading" secondItem="aO1-Fs-h34" secondAttribute="trailing" constant="28" id="O6K-lk-3XY"/>
-                            <constraint firstItem="Ubb-E6-BQs" firstAttribute="leading" secondItem="2hv-Kg-v1q" secondAttribute="leading" id="Qcw-f1-KsA"/>
-                            <constraint firstItem="h0e-X1-alN" firstAttribute="leading" secondItem="AB2-oI-YLO" secondAttribute="leading" constant="181" id="U9l-Cr-5ac"/>
-                            <constraint firstItem="MOg-h6-KEh" firstAttribute="leading" secondItem="Pke-m4-c6n" secondAttribute="leading" id="aOz-pz-aeX"/>
-                            <constraint firstItem="2hv-Kg-v1q" firstAttribute="leading" secondItem="MOg-h6-KEh" secondAttribute="leading" id="b2a-cX-f5O"/>
-                            <constraint firstItem="aO1-Fs-h34" firstAttribute="top" secondItem="Pke-m4-c6n" secondAttribute="bottom" constant="53" id="bCk-Nl-pCU"/>
-                            <constraint firstItem="poP-g9-bpr" firstAttribute="centerX" secondItem="Hqy-1J-vqH" secondAttribute="centerX" id="iGX-L5-8rM"/>
-                            <constraint firstItem="Pke-m4-c6n" firstAttribute="top" secondItem="MOg-h6-KEh" secondAttribute="bottom" constant="8" id="oNY-A7-akA"/>
-                            <constraint firstItem="2hv-Kg-v1q" firstAttribute="trailing" secondItem="Pke-m4-c6n" secondAttribute="trailing" id="rE6-ai-gXj"/>
-                            <constraint firstItem="Pke-m4-c6n" firstAttribute="leading" secondItem="aO1-Fs-h34" secondAttribute="leading" id="v2b-vi-vJx"/>
-                            <constraint firstItem="Ubb-E6-BQs" firstAttribute="top" secondItem="poP-g9-bpr" secondAttribute="bottom" constant="59" id="wBn-l0-xwg"/>
-                            <constraint firstItem="Ubb-E6-BQs" firstAttribute="leading" secondItem="AB2-oI-YLO" secondAttribute="leading" constant="80" id="y2t-43-8pG"/>
+                            <constraint firstItem="xtY-Jh-6B8" firstAttribute="leading" secondItem="AB2-oI-YLO" secondAttribute="leading" constant="24" id="BkT-rB-6zo"/>
+                            <constraint firstItem="xtY-Jh-6B8" firstAttribute="top" secondItem="AB2-oI-YLO" secondAttribute="top" constant="21.000000000000014" id="f8N-2W-eP1"/>
+                            <constraint firstItem="xtY-Jh-6B8" firstAttribute="centerX" secondItem="Hqy-1J-vqH" secondAttribute="centerX" id="l22-rX-kDt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eSu-eR-tf1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iu1-oY-hsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1652" y="-151"/>
+            <point key="canvasLocation" x="1650.7246376811595" y="-151.63043478260872"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="E9r-EU-Zxj">
