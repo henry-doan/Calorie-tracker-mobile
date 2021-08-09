@@ -104,8 +104,11 @@
                                 <rect key="frame" x="24" y="81.000000000000014" width="366" height="130.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOh-VN-orp" userLabel="EditTitle">
-                                        <rect key="frame" x="162.33333333333334" y="0.0" width="41.666666666666657" height="30"/>
+                                        <rect key="frame" x="160" y="0.0" width="46" height="30"/>
                                         <accessibility key="accessibilityConfiguration" identifier="EditTitle" label="EditTitle"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="45.670000000000002" id="0Kz-dx-8Lg"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -170,6 +173,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bKq-L5-e2Q"/>
+                    <connections>
+                        <outlet property="editCalTxtBx" destination="uUS-Zg-4aW" id="kRD-bx-95U"/>
+                        <outlet property="editIntakeSwitch" destination="x8F-3o-xva" id="zkL-dT-iro"/>
+                        <outlet property="editNameTxtBx" destination="Ztk-CQ-btq" id="eeE-kL-FMH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QSt-f0-Lws" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -187,8 +195,11 @@
                                 <rect key="frame" x="24" y="65.000000000000014" width="366" height="130.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Form" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poP-g9-bpr" userLabel="AddTitle">
-                                        <rect key="frame" x="130.66666666666666" y="0.0" width="105" height="30"/>
+                                        <rect key="frame" x="125.66666666666666" y="0.0" width="115" height="30"/>
                                         <accessibility key="accessibilityConfiguration" identifier="AddTitle" label="AddTitle"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="115" id="OFA-vH-WOC"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

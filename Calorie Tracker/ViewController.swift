@@ -6,16 +6,13 @@
 //
 
 import UIKit
+import SQLite3
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddProtocol {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddProtocol, EditProtocol {
     
     // array to store calories items
-    //var calsArr: [Calorie] = []
-    var calsArr = [
-        Calorie(name: "lunch", cals: 100, intake: true),
-        Calorie(name: "Snack", cals: 60, intake: true),
-        Calorie(name: "walk", cals: 40, intake: false),
-    ]
+    var calsArr: [Calorie] = []
+
     var totalCal = 0
     
     // index of the item being edited
@@ -24,9 +21,122 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var CalTotalLbl: UILabel!
     
+    var db: OpaquePointer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Calorie Tracker";
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self,
+        selector: #selector(saveToDatabase(_:)),
+        name: UIApplication.willResignActiveNotification,
+        object: nil)
+                
+        let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("CalorieTracker.sqlite")
+                
+        if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
+            print("error opening database")
+        }
+                
+        if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS Calories (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR, cals INTEGER, intake INTEGER)", nil, nil, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error creating table: \(errmsg)")
+        }
+             
+        loadItemList()
+    }
+    
+    func loadItemList(){
+        let queryString = "SELECT * FROM Calories"
+         
+        var stmt:OpaquePointer?
+         
+        if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing select: \(errmsg)")
+            return
+        }
+         
+        while(sqlite3_step(stmt) == SQLITE_ROW){
+            let dbname = String(cString: sqlite3_column_text(stmt, 1))
+            let dbcals = Int(sqlite3_column_int(stmt, 2))
+            let dbintake = Int(sqlite3_column_int(stmt, 3))
+            var dbBoolIntake = true
+            if (dbintake == 0) {
+                dbBoolIntake = false
+            }
+
+            calsArr.append(Calorie(name: dbname, cals: dbcals, intake: dbBoolIntake))
+
+        }
+
+    }
+    
+    @objc func saveToDatabase(_ notification:Notification) {
+
+        // delete all items in the db
+        let deleteQuery = "DELETE FROM Calories"
+        if sqlite3_exec(db, "DELETE FROM Calories", nil, nil, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error Deleting all items: \(errmsg)")
+        }
+
+        var delstmt:OpaquePointer?
+        if sqlite3_prepare(db, deleteQuery, -1, &delstmt, nil) != SQLITE_OK {
+            print("error preparing delete")
+        }
+
+        if sqlite3_finalize(delstmt) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error finalizing prepared statement: \(errmsg)")
+        }
+
+        // insert to db
+        for cal in calsArr {
+            var stmt: OpaquePointer?
+            let name = cal.name
+            let cals = cal.cals
+            let intake = cal.intake
+            let intIntake = (intake) ? 1 : 0
+            let queryString = "INSERT INTO Calories (name, cals, intake) VALUES (?,?,?)"
+
+            if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("error preparing insert: \(errmsg)")
+                return
+            }
+
+            if sqlite3_bind_text(stmt, 1, (name as NSString).utf8String, -1, nil) != SQLITE_OK{
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("failure binding name: \(errmsg)")
+                return
+            }
+
+            if sqlite3_bind_int(stmt, 2, (String(cals) as NSString).intValue)  != SQLITE_OK{
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("failure binding cals: \(errmsg)")
+                return
+            }
+            
+            if sqlite3_bind_int(stmt, 3, (String(intIntake) as NSString).intValue) != SQLITE_OK{
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("failure binding intake: \(errmsg)")
+                return
+            }
+
+
+            if sqlite3_step(stmt) != SQLITE_DONE {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("failure inserting cal: \(errmsg)")
+                return
+            }
+        }
+        
+        tableView.reloadData()
+        
+        //close db
+//        sqlite3_close(db)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -41,12 +151,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             // Instantiate editViewController
             let editViewController = segue.destination as! EditViewController
             
-            //editViewController. = calsArr[calItemBeingEdited].name
-            //editViewController. = calsArr[calItemBeingEdited].cals
+            editViewController.editName = calsArr[calItemBeingEdited].name
+            editViewController.editCal = calsArr[calItemBeingEdited].cals
+            editViewController.editIntake = calsArr[calItemBeingEdited].intake
                     
                     
             let view = segue.destination as! EditViewController
-            //view.delegate = self
+            view.delegate = self
         }
     }
     
@@ -118,5 +229,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.tableView.reloadData()
     }
 
+    func setEditedValues(editName: String, editCal: Int, editIntake: Bool) {
+        // change item edited to new values
+        calsArr[calItemBeingEdited].name = editName
+        calsArr[calItemBeingEdited].cals = editCal
+        calsArr[calItemBeingEdited].intake = editIntake
+                
+        // reload values
+        self.tableView.reloadData()
+    }
 }
 
