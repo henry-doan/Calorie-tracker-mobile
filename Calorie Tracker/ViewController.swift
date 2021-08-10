@@ -68,8 +68,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
 
             calsArr.append(Calorie(name: dbname, cals: dbcals, intake: dbBoolIntake))
-
         }
+        
+        calcTotal()
 
     }
     
@@ -134,7 +135,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         tableView.reloadData()
-        
+        calcTotal()
         //close db
 //        sqlite3_close(db)
     }
@@ -213,9 +214,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
             tableView.reloadData()
             
+            self.calcTotal()
+
             actionPerformed(true)
         }
             
+        
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
@@ -227,6 +231,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // reload values
         self.tableView.reloadData()
+        calcTotal()
     }
 
     func setEditedValues(editName: String, editCal: Int, editIntake: Bool) {
@@ -237,6 +242,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
         // reload values
         self.tableView.reloadData()
+        calcTotal()
+    }
+    
+    func calcTotal() {
+        totalCal = 0
+        for cal in calsArr {
+            if (cal.intake) {
+                totalCal += cal.cals
+            } else {
+                totalCal -= cal.cals
+            }
+        }
+        CalTotalLbl.text = "\(totalCal)"
+        
+        if (totalCal < 2000) {
+            CalTotalLbl.textColor = UIColor.yellow
+        } else if (totalCal >= 2000 && totalCal <= 2500) {
+            CalTotalLbl.textColor = UIColor.green
+        } else if (totalCal > 2500) {
+            CalTotalLbl.textColor = UIColor.red
+        }
+        
     }
 }
 
