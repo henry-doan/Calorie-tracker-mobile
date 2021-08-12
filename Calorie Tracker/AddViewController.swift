@@ -18,6 +18,23 @@ class AddViewController: UIViewController {
     @IBOutlet weak var addCallTxtBx: UITextField!
     @IBOutlet weak var intakeSwitch: UISwitch!
     
+    /* random outtake calorie dictionary from https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-of-leisure-and-routine-activities
+        take the workouts and the calories from activites
+     */
+    var randOuttakes = [
+        Calorie(name: "General Weight Lifting", cals: 90, intake: false),
+        Calorie(name: "Water Aerobics", cals: 120, intake: false),
+        Calorie(name: "Stretching", cals: 120, intake: false),
+        Calorie(name: "Calisthenics", cals: 135, intake: false),
+        Calorie(name: "Stair Machine", cals: 180, intake: false),
+        Calorie(name: "Bicycling Machine", cals: 210, intake: false),
+        Calorie(name: "Rowing Machine", cals: 210, intake: false),
+        Calorie(name: "Circuit Training", cals: 240, intake: false),
+        Calorie(name: "Elliptical Machine", cals: 270, intake: false),
+        Calorie(name: "Tennis", cals: 240, intake: false)
+    ]
+    
+    
     var delegate:AddProtocol?
     
     override func viewDidLoad() {
@@ -41,6 +58,15 @@ class AddViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+    @IBAction func randOutake(_ sender: Any) {
+        let randomOuttake = randOuttakes.randomElement()!
+        addNameTxtBx.text = randomOuttake.name
+        addCallTxtBx.text = "\(randomOuttake.cals)"
+        intakeSwitch.isOn = randomOuttake.intake
+    }
+    
+    @IBAction func randIntake(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 

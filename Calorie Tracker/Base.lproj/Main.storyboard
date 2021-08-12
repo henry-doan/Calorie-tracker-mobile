@@ -192,10 +192,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xtY-Jh-6B8">
-                                <rect key="frame" x="24" y="65.000000000000014" width="366" height="130.33333333333337"/>
+                                <rect key="frame" x="24" y="65.000000000000014" width="363" height="130.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Form" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poP-g9-bpr" userLabel="AddTitle">
-                                        <rect key="frame" x="125.66666666666666" y="0.0" width="115" height="30"/>
+                                        <rect key="frame" x="124" y="0.0" width="115" height="30"/>
                                         <accessibility key="accessibilityConfiguration" identifier="AddTitle" label="AddTitle"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="115" id="OFA-vH-WOC"/>
@@ -205,7 +205,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6is-QN-Orc">
-                                        <rect key="frame" x="0.0" y="35" width="366" height="34"/>
+                                        <rect key="frame" x="0.0" y="35" width="363" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubb-E6-BQs" userLabel="AddItemLbl">
                                                 <rect key="frame" x="0.0" y="0.0" width="87.333333333333329" height="20.333333333333332"/>
@@ -215,20 +215,20 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2hv-Kg-v1q" userLabel="AddNameTxtBx">
-                                                <rect key="frame" x="97.333333333333314" y="0.0" width="150" height="34"/>
+                                                <rect key="frame" x="97.333333333333314" y="0.0" width="147" height="34"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="AddNameTxtBx" label="AddNameTxtBx"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOg-h6-KEh" userLabel="CalAddLabel">
-                                                <rect key="frame" x="257.33333333333331" y="0.0" width="66.666666666666686" height="20.333333333333332"/>
+                                                <rect key="frame" x="254.33333333333329" y="0.0" width="66.666666666666657" height="20.333333333333332"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="CalAddLabel" label="CalAddLabel"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pke-m4-c6n" userLabel="AddCalTxtBx">
-                                                <rect key="frame" x="334" y="0.0" width="32" height="34"/>
+                                                <rect key="frame" x="331" y="0.0" width="32" height="34"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="AddCalTxtBx" label="AddCalTxtBx"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="32" id="jUQ-BH-54b"/>
@@ -239,11 +239,11 @@
                                         </subviews>
                                     </stackView>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aO1-Fs-h34" userLabel="IntakeAddSwitch">
-                                        <rect key="frame" x="158.66666666666666" y="74" width="51" height="31"/>
+                                        <rect key="frame" x="157" y="74" width="51" height="31"/>
                                         <accessibility key="accessibilityConfiguration" identifier="IntakeAddSwitch" label="IntakeAddSwitch"/>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intake" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7g-Tm-zFL" userLabel="IntakeAddLbl">
-                                        <rect key="frame" x="160" y="110" width="46" height="20.333333333333343"/>
+                                        <rect key="frame" x="158.66666666666666" y="110" width="46" height="20.333333333333343"/>
                                         <accessibility key="accessibilityConfiguration" identifier="IntakeAddLbl" label="IntakeAddLbl"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -254,13 +254,43 @@
                                     <constraint firstItem="6is-QN-Orc" firstAttribute="leading" secondItem="xtY-Jh-6B8" secondAttribute="leading" id="9Od-FR-su3"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfF-q8-JHH" userLabel="randOuttake">
+                                <rect key="frame" x="165" y="207.33333333333334" width="81" height="24"/>
+                                <accessibility key="accessibilityConfiguration" identifier="randOuttake" label="randOuttake"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="A3z-Pf-Kpi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" title="Random Outtake"/>
+                                <connections>
+                                    <action selector="randOutake:" destination="6wm-Dj-W7W" eventType="touchUpInside" id="zH9-g9-Lhm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fX-Ai-kal" userLabel="randIntake">
+                                <rect key="frame" x="165" y="237.33333333333334" width="81" height="24.000000000000028"/>
+                                <accessibility key="accessibilityConfiguration" identifier="randOuttake" label="randOuttake"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="UXe-sn-qjJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" title="Random Intake"/>
+                                <connections>
+                                    <action selector="randIntake:" destination="6wm-Dj-W7W" eventType="touchUpInside" id="tlc-WM-afc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AB2-oI-YLO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="AfF-q8-JHH" firstAttribute="top" secondItem="xtY-Jh-6B8" secondAttribute="bottom" constant="12" id="5pI-DD-JHt"/>
                             <constraint firstItem="xtY-Jh-6B8" firstAttribute="leading" secondItem="AB2-oI-YLO" secondAttribute="leading" constant="24" id="BkT-rB-6zo"/>
+                            <constraint firstItem="AB2-oI-YLO" firstAttribute="trailing" secondItem="3fX-Ai-kal" secondAttribute="trailing" constant="165" id="K98-2b-2yi"/>
+                            <constraint firstItem="3fX-Ai-kal" firstAttribute="leading" secondItem="AB2-oI-YLO" secondAttribute="leading" constant="165" id="aVm-A6-AwS"/>
+                            <constraint firstItem="3fX-Ai-kal" firstAttribute="top" secondItem="AfF-q8-JHH" secondAttribute="bottom" constant="6" id="bKv-zo-hrR"/>
                             <constraint firstItem="xtY-Jh-6B8" firstAttribute="top" secondItem="AB2-oI-YLO" secondAttribute="top" constant="21.000000000000014" id="f8N-2W-eP1"/>
                             <constraint firstItem="xtY-Jh-6B8" firstAttribute="centerX" secondItem="Hqy-1J-vqH" secondAttribute="centerX" id="l22-rX-kDt"/>
+                            <constraint firstItem="AfF-q8-JHH" firstAttribute="leading" secondItem="AB2-oI-YLO" secondAttribute="leading" constant="165" id="rKF-xm-L0N"/>
+                            <constraint firstItem="AB2-oI-YLO" firstAttribute="trailing" secondItem="AfF-q8-JHH" secondAttribute="trailing" constant="165" id="tdf-zd-j7a"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eSu-eR-tf1"/>
@@ -272,7 +302,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iu1-oY-hsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1650.7246376811595" y="-151.63043478260872"/>
+            <point key="canvasLocation" x="1872" y="-172"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="E9r-EU-Zxj">
