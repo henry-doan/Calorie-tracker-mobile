@@ -66,6 +66,42 @@ class AddViewController: UIViewController {
     }
     
     @IBAction func randIntake(_ sender: Any) {
+        var randIntakeName = ""
+        var randIntakeCal = ""
+        var url : String = "https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=516a82bb&app_key=602802aa8647f8dbdde83d855eb9aea6&random=true"
+        URLSession.shared.dataTask(with: NSURL(string: url) as! URL) { data, response, error in
+            // Handle result
+            let response = String (data: data!, encoding: String.Encoding.utf8)
+//        print("response is \(response)")
+            do {
+                let getResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+
+//              print("get res \(getResponse)")
+                                
+                let recipesDict = getResponse as! NSDictionary
+
+                let recipesArr = recipesDict["hits"] as! NSArray
+//                print(recipesArr[0])
+                let recipe = recipesArr[0] as! NSDictionary
+//                print("--------------------------------")
+                let randFood = recipe["recipe"] as! NSDictionary
+                let randRecipeCal = randFood["calories"] as! NSNumber
+                let randRecipeName = randFood["label"]! as! NSString
+//                print(randFood["calories"]!)
+                print(randFood["label"]!)
+                print(randRecipeCal.intValue)
+                randIntakeName = randRecipeName as String
+                randIntakeCal = "\(randRecipeCal.intValue)"
+                DispatchQueue.main.async {
+                    self.addNameTxtBx.text = randIntakeName
+                    self.addCallTxtBx.text = randIntakeCal
+                    self.intakeSwitch.isOn = true
+                }
+
+            } catch {
+                print("error serializing JSON: \(error)")
+            }
+        }.resume()
     }
     /*
     // MARK: - Navigation
