@@ -7,6 +7,7 @@
 
 import UIKit
 
+// add protocol to add a cal item
 protocol AddProtocol {
     func setAddedValues(addName: String, addCal: Int, addIntake: Bool)
 }
@@ -34,83 +35,96 @@ class AddViewController: UIViewController {
         Calorie(name: "Tennis", cals: 240, intake: false)
     ]
     
+    // random food array of items to have in the api
+    var randFoods = ["chicken", "beef", "pork", "fish", "bean", "veggie", "cake"]
     
+    // add delegate
     var delegate:AddProtocol?
     
+    // function to run when the form is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // set title
         self.title = "Add";
         
+        // have a save button
         let save = UIBarButtonItem(barButtonSystemItem: .save,
         target: self,
         action: #selector(saveItem))
         self.navigationItem.rightBarButtonItem = save
     }
     
+    // function that triggers a save on the form
     @objc func saveItem() {
+        // grab form values
         let addedName = addNameTxtBx.text!
         let addedCal = Int(addCallTxtBx.text!) ?? 0
         let addedIntake = intakeSwitch.isOn
 
+        // send to delegate to add to app
         delegate?.setAddedValues(addName: addedName, addCal: addedCal, addIntake: addedIntake)
         
+        // navigate back to home controller
         self.navigationController?.popViewController(animated: true)
     }
 
+    // event handler for a random outake
     @IBAction func randOutake(_ sender: Any) {
+        // grab a random outtake
         let randomOuttake = randOuttakes.randomElement()!
+        
+        // fill out the form with ranom outtake
         addNameTxtBx.text = randomOuttake.name
         addCallTxtBx.text = "\(randomOuttake.cals)"
         intakeSwitch.isOn = randomOuttake.intake
     }
     
+    // event handler for a random intake
     @IBAction func randIntake(_ sender: Any) {
+        // initial values
         var randIntakeName = ""
         var randIntakeCal = ""
-        var url : String = "https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=516a82bb&app_key=602802aa8647f8dbdde83d855eb9aea6&random=true"
+        
+        // random food item to search
+        let randFood = randFoods.randomElement()
+        
+        // url to the edamam api
+        // TODO hide API Keys
+        let url : String = "https://api.edamam.com/api/recipes/v2?type=public&q=" + randFood! + "&app_id=516a82bb&app_key=602802aa8647f8dbdde83d855eb9aea6&random=true"
+        // hand api response
         URLSession.shared.dataTask(with: NSURL(string: url) as! URL) { data, response, error in
             // Handle result
             let response = String (data: data!, encoding: String.Encoding.utf8)
-//        print("response is \(response)")
+           
             do {
+                // parse the json
                 let getResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-
-//              print("get res \(getResponse)")
-                                
+                            
+                // pares all the way to the correct wanted values
                 let recipesDict = getResponse as! NSDictionary
-
                 let recipesArr = recipesDict["hits"] as! NSArray
-//                print(recipesArr[0])
                 let recipe = recipesArr[0] as! NSDictionary
-//                print("--------------------------------")
                 let randFood = recipe["recipe"] as! NSDictionary
                 let randRecipeCal = randFood["calories"] as! NSNumber
                 let randRecipeName = randFood["label"]! as! NSString
-//                print(randFood["calories"]!)
-                print(randFood["label"]!)
-                print(randRecipeCal.intValue)
+                
+                // set vars to api values with right datatypes
                 randIntakeName = randRecipeName as String
                 randIntakeCal = "\(randRecipeCal.intValue)"
+                
+                // run during the main thread
                 DispatchQueue.main.async {
+                    // fill out form with values
                     self.addNameTxtBx.text = randIntakeName
                     self.addCallTxtBx.text = randIntakeCal
                     self.intakeSwitch.isOn = true
                 }
-
+                
+            // if api has errors
             } catch {
                 print("error serializing JSON: \(error)")
             }
-        }.resume()
+        }.resume() // resume process
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

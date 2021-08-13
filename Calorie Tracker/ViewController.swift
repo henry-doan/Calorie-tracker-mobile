@@ -12,42 +12,53 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // array to store calories items
     var calsArr: [Calorie] = []
-
+    
+    // int total calorie count
     var totalCal = 0
     
     // index of the item being edited
     var calItemBeingEdited: Int!
     
+    // view items
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var CalTotalLbl: UILabel!
     
+    // db pointer
     var db: OpaquePointer?
     
+    // function of the initial load
     override func viewDidLoad() {
         super.viewDidLoad()
+        // set title
         self.title = "Calorie Tracker";
         
+        // notifcation to save to the db
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
         selector: #selector(saveToDatabase(_:)),
         name: UIApplication.willResignActiveNotification,
         object: nil)
-                
+              
+        // create initial db
         let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("CalorieTracker.sqlite")
                 
         if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
             print("error opening database")
         }
-                
+            
+        // create table
         if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS Calories (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR, cals INTEGER, intake INTEGER)", nil, nil, nil) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error creating table: \(errmsg)")
         }
              
+        // load items to the table
         loadItemList()
     }
     
+    // load items from the db to the view
     func loadItemList(){
+        // grab vals from db
         let queryString = "SELECT * FROM Calories"
          
         var stmt:OpaquePointer?
@@ -66,14 +77,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if (dbintake == 0) {
                 dbBoolIntake = false
             }
-
+            
+            // add to cal arr
             calsArr.append(Calorie(name: dbname, cals: dbcals, intake: dbBoolIntake))
         }
         
+        // calculate running calorie total
         calcTotal()
-
     }
     
+    // function to save items to database
     @objc func saveToDatabase(_ notification:Notification) {
 
         // delete all items in the db
@@ -134,12 +147,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
         
+        // update table view
         tableView.reloadData()
+        
+        // recalculate calorie total
         calcTotal()
         //close db
 //        sqlite3_close(db)
     }
     
+    // what to do to prepare for segue to other views
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "addSegue") {
             let view = segue.destination as! AddViewController
@@ -152,6 +169,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             // Instantiate editViewController
             let editViewController = segue.destination as! EditViewController
             
+            // set edit item data
             editViewController.editName = calsArr[calItemBeingEdited].name
             editViewController.editCal = calsArr[calItemBeingEdited].cals
             editViewController.editIntake = calsArr[calItemBeingEdited].intake
@@ -219,11 +237,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             actionPerformed(true)
         }
             
-        
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
-    // fucntion to add the calorie item
+    // function to add the calorie item
     func setAddedValues(addName: String, addCal: Int, addIntake: Bool) {
         // add new item
         let newItem = Calorie(name: addName, cals: addCal, intake: addIntake)
@@ -231,9 +248,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // reload values
         self.tableView.reloadData()
+        
+        // recalulate calorie total
         calcTotal()
     }
-
+    
+    // function to edit a calorie item
     func setEditedValues(editName: String, editCal: Int, editIntake: Bool) {
         // change item edited to new values
         calsArr[calItemBeingEdited].name = editName
@@ -242,28 +262,70 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
         // reload values
         self.tableView.reloadData()
+        
+        // recalulate calorie total
         calcTotal()
     }
     
+    // function to calulate the calorie total
     func calcTotal() {
+        // set initially to 0
         totalCal = 0
+        
+        // for each item in cal array
         for cal in calsArr {
             if (cal.intake) {
+                // add the intake
                 totalCal += cal.cals
             } else {
+                // subtract outake
                 totalCal -= cal.cals
             }
         }
+        
+        // display running total
         CalTotalLbl.text = "\(totalCal)"
         
+        // change color base on recommended calorie intake
         if (totalCal < 2000) {
+            // too low
             CalTotalLbl.textColor = UIColor.yellow
         } else if (totalCal >= 2000 && totalCal <= 2500) {
+            // just right
             CalTotalLbl.textColor = UIColor.green
         } else if (totalCal > 2500) {
+            // too much
             CalTotalLbl.textColor = UIColor.red
         }
+    }
+    
+    // event handler for reseting the app to a initial state
+    @IBAction func resetApp(_ sender: Any) {
+        // reset running calorie total
+        totalCal = 0
+        CalTotalLbl.text = "\(totalCal)"
         
+        // clear our calsArr
+        calsArr = []
+        
+        // delete all items in the db
+        let deleteQuery = "DELETE FROM Calories"
+        if sqlite3_exec(db, "DELETE FROM Calories", nil, nil, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error Deleting all items: \(errmsg)")
+        }
+
+        var delstmt:OpaquePointer?
+        if sqlite3_prepare(db, deleteQuery, -1, &delstmt, nil) != SQLITE_OK {
+            print("error preparing delete")
+        }
+
+        if sqlite3_finalize(delstmt) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error finalizing prepared statement: \(errmsg)")
+        }
+        
+        // refresh the view
+        tableView.reloadData()
     }
 }
-

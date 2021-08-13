@@ -7,12 +7,13 @@
 
 import UIKit
 
+// edit protocol to edit a cal item
 protocol EditProtocol {
     func setEditedValues(editName: String, editCal: Int, editIntake: Bool)
 }
 
 class EditViewController: UIViewController {
-
+    // form items
     @IBOutlet weak var editNameTxtBx: UITextField!
     @IBOutlet weak var editCalTxtBx: UITextField!
     @IBOutlet weak var editIntakeSwitch: UISwitch!
@@ -25,17 +26,21 @@ class EditViewController: UIViewController {
     // delegate for edit protocol
     var delegate:EditProtocol?
     
+    // function to run when the form is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // set title
         self.title = "Edit";
         
+        // have a save button
         let save = UIBarButtonItem(barButtonSystemItem: .save,
         target: self,
         action: #selector(saveItem))
         self.navigationItem.rightBarButtonItem = save
     }
     
+    // function that triggers a save on the form
     @objc func saveItem() {
         // set up and call the function specified by the protocol
         self.navigationController?.popViewController(animated: true)
@@ -44,10 +49,12 @@ class EditViewController: UIViewController {
         let editedName = editNameTxtBx.text!
         let editedCal = Int(editCalTxtBx.text!) ?? 0
         let editIntake = editIntakeSwitch.isOn
-                
+             
+        // call the delegate to edit values
         delegate?.setEditedValues(editName: editedName, editCal: editedCal, editIntake: editIntake)
     }
     
+    // function to grab cal item data into the edit form
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
             
@@ -56,15 +63,4 @@ class EditViewController: UIViewController {
         editCalTxtBx.text = "\(editCal!)"
         editIntakeSwitch.isOn = editIntake ?? true
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

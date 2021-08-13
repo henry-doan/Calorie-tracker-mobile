@@ -7,6 +7,7 @@
 
 import Foundation
 
+// calorie structure of waht a calorie object has and datatypes
 struct Calorie {
     var name : String
     var cals : Int
