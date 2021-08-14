@@ -197,7 +197,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xtY-Jh-6B8">
-                                <rect key="frame" x="24" y="65" width="366" height="130.33333333333337"/>
+                                <rect key="frame" x="24" y="65.000000000000014" width="366" height="130.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Form" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poP-g9-bpr" userLabel="AddTitle">
                                         <rect key="frame" x="125.66666666666666" y="0.0" width="115" height="30"/>

@@ -206,8 +206,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel!.text = currentItem.name
           
         // set subtitle
-        let calTxt = ""
-        currentItem.intake ? calTxt + "+" : calTxt + "-"
+        var calTxt = ""
+        if (currentItem.intake) {
+            calTxt = "+"
+        } else {
+            calTxt = "-"
+        }
         cell.detailTextLabel!.text = "\(calTxt) \(currentItem.cals)"
         cell.detailTextLabel!.textColor = currentItem.intake ? UIColor.green : UIColor.red
         

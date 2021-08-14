@@ -93,9 +93,9 @@ class AddViewController: UIViewController {
         // TODO hide API Keys
         let url : String = "https://api.edamam.com/api/recipes/v2?type=public&q=" + randFood! + "&app_id=516a82bb&app_key=602802aa8647f8dbdde83d855eb9aea6&random=true"
         // hand api response
-        URLSession.shared.dataTask(with: NSURL(string: url) as! URL) { data, response, error in
+        URLSession.shared.dataTask(with: NSURL(string: url)! as URL) { data, response, error in
             // Handle result
-            let response = String (data: data!, encoding: String.Encoding.utf8)
+           // let response = String (data: data!, encoding: String.Encoding.utf8)
            
             do {
                 // parse the json
